@@ -42,9 +42,9 @@ class EditionController < ApplicationController
         iv = nil
         encrypted = nil
 
-        File.open("./.key") {|f| key = Marshal.load(f)}
-        File.open("./.iv") {|f| iv = Marshal.load(f)}
-        File.open("./.key.enc") {|f| encrypted = Marshal.load(f)}
+        File.open("./security/.key") {|f| key = Marshal.load(f)}
+        File.open("./security/.iv") {|f| iv = Marshal.load(f)}
+        File.open("./security/.key.enc") {|f| encrypted = Marshal.load(f)}
 
         decipher = OpenSSL::Cipher::AES.new(256, :CBC)
         decipher.decrypt

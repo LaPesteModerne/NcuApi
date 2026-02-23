@@ -14,6 +14,8 @@ class MainPagesController < ApplicationController
       page_object = Page.new(page_url, page_name)
       @pageList.append(page_object)
     end
+
+    render json: @pageList
   end
   
   def page
@@ -22,6 +24,7 @@ class MainPagesController < ApplicationController
     if File.exists?(filePath) then
       dataStream = File.open(filePath)
       @pageContent = dataStream.read()
+      render json: { markdown: @pageContent }
     else
       return head 204
     end
